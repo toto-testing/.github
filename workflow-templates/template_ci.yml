@@ -1,4 +1,5 @@
 name: toto Organization CI
+description: This is a template
 
 on:
   push:
