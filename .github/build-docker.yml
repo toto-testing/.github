@@ -1,0 +1,32 @@
+name: build a docker image
+
+on:
+  workflow_call:
+    inputs:
+      image_name:
+        required: true
+        type: string
+        default: default image
+    secrets:
+      registry_username:
+        required: true
+      registry_password:
+        required: true
+
+jobs:
+  login_registry:
+    name: Login to the registry
+    run_on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup buildX
+        uses: docker/setup-buildx-action@v1
+      - name: Login to the registry
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.registry_username }}
+          password: ${{ secrets.registry_password }}
+  
+
+        
+  
